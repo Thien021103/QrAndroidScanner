@@ -1,10 +1,17 @@
 <resources>
     <string name="app_name">QR Scanner</string>
+
     <string name="scan_qr_text">Scan the QR Code</string>
+
     <string name="scan_qr">Scan QR</string>
     <string name="gen_qr">Generate custom QR</string>
     <string name="choose_img_qr">Choose image in storage</string>
+
     <string name="your_qr_code">Your QR code</string>
     <string name="your_qr_content">Your QR content</string>
     <string name="number">+1472732234</string>
+
+    <string name="interact_button">Interact</string>
+    <string name="save_button">Save</string>
+    <string name="share_button">Share</string>
 </resources>

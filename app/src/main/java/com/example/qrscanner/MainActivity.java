@@ -93,9 +93,6 @@ public class MainActivity extends Activity {
     }
     private void openQRScanner(){
         Intent intentScan = new Intent(this, QRScanActivity.class);
-        intentScan.setAction(Intents.Scan.ACTION);
-        intentScan.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intentScan.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
         this.startActivity(intentScan);
     }
     private void openQRGenerator(){
