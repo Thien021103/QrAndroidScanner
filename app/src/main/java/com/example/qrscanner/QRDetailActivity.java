@@ -32,8 +32,8 @@ import java.io.OutputStream;
 
 public class QRDetailActivity extends AppCompatActivity {
     private ImageView qrCode;
-    private Button saveQrBtn, shareQrBtn, interactBtn;
-    private TextView qrInfo;
+    private Button saveQrBtn, shareQrBtn, interactBtn, homeBtn;
+    private TextView content;
     private String raw, result;
     private int type;
     private Bitmap bitmap;
@@ -45,34 +45,111 @@ public class QRDetailActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_qrdetail);
 
-        this.getIntent().getStringExtra("RESULT");
-        this.getIntent().getStringExtra("RAW");
-        this.getIntent().getIntExtra("TYPE", 0);
-
-        switch (type) {
-            case 0:
-                break;
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-        }
+        result = this.getIntent().getStringExtra("RESULT");
+        raw = this.getIntent().getStringExtra("RAW");
+        type = this.getIntent().getIntExtra("TYPE", 0);
 
         bitmap = QRGenActivity.generateQRCode(raw);
 
         saveQrBtn = findViewById(R.id.saveBtn);
         shareQrBtn = findViewById(R.id.shareBtn);
         interactBtn = findViewById(R.id.interactBtn);
+        homeBtn = findViewById(R.id.genHomeBtn);
+        content = findViewById(R.id.qrContent);
+
+        switch (type) {
+            case 0: // Text
+                interactBtn.setVisibility(View.GONE);
+                interactBtn.setClickable(false);
+                content.setText(
+                    "___RESULT___\n" + result
+                );
+                break;
+            case 1: // Phone
+                interactBtn.setVisibility(View.VISIBLE);
+                interactBtn.setClickable(true);
+                interactBtn.setText("Dial");
+                interactBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        intent.setData(Uri.parse(raw));
+                        startActivity(intent);
+                    }
+                });
+                content.setText(
+                    "___PHONE___\n" + result
+                );
+                break;
+            case 2: // Email
+                interactBtn.setVisibility(View.VISIBLE);
+                interactBtn.setClickable(true);
+                interactBtn.setText("Send email");
+                interactBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(Intent.ACTION_SENDTO);
+                        intent.setData(Uri.parse(raw));
+                        startActivity(intent);
+                    }
+                });
+                content.setText(
+                    "___EMAIL___\n" + result
+                );
+                break;
+            case 3: // Link
+                interactBtn.setVisibility(View.VISIBLE);
+                interactBtn.setClickable(true);
+                interactBtn.setText("Go to link");
+                interactBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(raw));
+                        startActivity(intent);
+                    }
+                });
+                content.setText(
+                        "___LINK___\n" + result
+                );
+                break;
+            case 4: // SMS
+                interactBtn.setVisibility(View.VISIBLE);
+                interactBtn.setClickable(true);
+                interactBtn.setText("Send SMS");
+                interactBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(raw));
+                        startActivity(intent);
+                    }
+                });
+                content.setText(
+                        "____SMS____\n" + result
+                );
+                break;
+            case 5: // Location
+                interactBtn.setVisibility(View.VISIBLE);
+                interactBtn.setClickable(true);
+                interactBtn.setText("See on map");
+                interactBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(raw));
+                        startActivity(intent);
+                    }
+                });
+                content.setText(
+                        "__LOCATION__\n" + result
+                );
+                break;
+        }
         saveQrBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                requestPermissions();
+                requestPermissionsToSave();
             }
         });
         shareQrBtn.setOnClickListener(new View.OnClickListener() {
@@ -145,7 +222,7 @@ public class QRDetailActivity extends AppCompatActivity {
 
         return imageFile;
     }
-    private void requestPermissions() {
+    private void requestPermissionsToSave() {
         // List of permissions to request
         String[] permissions = {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
