@@ -1,6 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Add custom UI elements here, like a custom overlay -->
 
@@ -9,7 +10,16 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="55dp"/>
+        android:layout_marginTop="100dp"/>
+
+    <ImageButton
+        android:id="@+id/genHomeBtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:contentDescription="@string/home_button"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <TextView
         android:id="@+id/custom_text"

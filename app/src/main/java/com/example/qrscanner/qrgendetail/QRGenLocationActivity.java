@@ -1,5 +1,6 @@
 package com.example.qrscanner.qrgendetail;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,14 +13,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.qrscanner.QRDetailActivity;
 import com.example.qrscanner.QRGenActivity;
 import com.example.qrscanner.R;
 
 public class QRGenLocationActivity extends AppCompatActivity {
 
     private EditText editLatitude, editLongitude, editLabel;
-    private ImageView qrCode;
-    private Button qrGenBtn;
+    private Button qrTextGenBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +31,12 @@ public class QRGenLocationActivity extends AppCompatActivity {
 //        editLabel = findViewById();
 //        editLatitude = findViewById();
 //        editLongitude = findViewById();
-//        qrCode = findViewById();
-//        qrGenBtn = findViewById();
+//        qrTextGenBtn = findViewById();
 
-        qrGenBtn.setOnClickListener(new View.OnClickListener() {
+        qrTextGenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //QRGenActivity.generateQRCode();
+                Intent intent = new Intent(getApplicationContext(), QRDetailActivity.class);
             }
         });
     }

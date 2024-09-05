@@ -46,15 +46,15 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        infoText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String phone = "+143213432345";
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:" + phone));
-                startActivity(intent);
-            }
-        });
+//        infoText.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                String phone = "+143213432345";
+//                Intent intent = new Intent(Intent.ACTION_DIAL);
+//                intent.setData(Uri.parse("tel:" + phone));
+//                startActivity(intent);
+//            }
+//        });
 
         QRScanBtn = findViewById(R.id.qr_scan_btn_id);
         QRGenBtn = findViewById(R.id.qr_gen_btn_id);
