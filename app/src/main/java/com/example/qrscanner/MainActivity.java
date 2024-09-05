@@ -46,22 +46,9 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        infoText.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                String phone = "+143213432345";
-//                Intent intent = new Intent(Intent.ACTION_DIAL);
-//                intent.setData(Uri.parse("tel:" + phone));
-//                startActivity(intent);
-//            }
-//        });
-
         QRScanBtn = findViewById(R.id.qr_scan_btn_id);
         QRGenBtn = findViewById(R.id.qr_gen_btn_id);
         chooseImgBtn = findViewById(R.id.img_choose_btn_id);
-
-        QRScanBtn.setClickable(false);
-        QRScanBtn.setVisibility(View.GONE);
 
         chooseImgBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -111,12 +98,12 @@ public class MainActivity extends Activity {
                 // Convert the image URI to a Bitmap
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
 
-                // Optionally display the selected image in an ImageView
-                ImageView imgQRCode = findViewById(R.id.qr_img);
-                imgQRCode.setImageBitmap(bitmap);
-
                 // Decode the QR code from the Bitmap
                 raw = QRGenActivity.decodeQRCode(bitmap);
+                if(raw == null) {
+                    Toast.makeText(this, "Could not rosolve QR", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 info = raw.split(":", 2);
                 switch (info[0]) {
                     case "tel":
@@ -127,14 +114,14 @@ public class MainActivity extends Activity {
                         result = info[1];
                         type = 2;
                         break;
-                    case "geo":
-                        result = info[1];
-                        type = 3;
-                        break;
                     case "https":
                     case "http":
                         result = info[1];
-                        type = 4;
+                        type = 3;
+                        break;
+                    case "geo":
+                        result = info[1];
+                        type = 5;
                         break;
                     default:
                         result = info[0];

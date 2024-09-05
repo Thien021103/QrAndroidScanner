@@ -51,12 +51,19 @@ public class QRDetailActivity extends AppCompatActivity {
 
         bitmap = QRGenActivity.generateQRCode(raw);
 
+        qrCode = findViewById(R.id.qrImg);
         saveQrBtn = findViewById(R.id.saveBtn);
         shareQrBtn = findViewById(R.id.shareBtn);
         interactBtn = findViewById(R.id.interactBtn);
-        homeBtn = findViewById(R.id.genHomeBtn);
+        homeBtn = findViewById(R.id.detailHomeBtn);
         content = findViewById(R.id.qrContent);
 
+        if(bitmap == null) {
+            Toast.makeText(this, "Could not resolve QR", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            qrCode.setImageBitmap(bitmap);
+        }
         switch (type) {
             case 0: // Text
                 interactBtn.setVisibility(View.GONE);
@@ -156,6 +163,13 @@ public class QRDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 shareImage(getApplicationContext(), bitmap);
+            }
+        });
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent homeIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(homeIntent);
             }
         });
     }

@@ -21,7 +21,7 @@
         android:hint="@string/gen_text" />
 
     <ImageButton
-        android:id="@+id/genHomeBtn"
+        android:id="@+id/genTextHomeBtn"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
@@ -40,7 +40,7 @@
         android:text="@string/gen_qr" />
 
     <TextView
-        android:id="@+id/editTextText"
+        android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"

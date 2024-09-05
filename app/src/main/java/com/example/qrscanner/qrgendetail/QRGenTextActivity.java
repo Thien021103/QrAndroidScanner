@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -12,6 +13,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.qrscanner.MainActivity;
 import com.example.qrscanner.QRDetailActivity;
 import com.example.qrscanner.R;
 
@@ -19,6 +21,7 @@ public class QRGenTextActivity extends AppCompatActivity {
     private String raw;
     private TextView qrText;
     private Button qrTextGenBtn;
+    private ImageButton homeBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +30,7 @@ public class QRGenTextActivity extends AppCompatActivity {
 
         qrText = findViewById(R.id.qrText);
         qrTextGenBtn = findViewById(R.id.qrTextGenBtn);
-
+        homeBtn = findViewById(R.id.genTextHomeBtn);
         qrTextGenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,6 +40,13 @@ public class QRGenTextActivity extends AppCompatActivity {
                 intent.putExtra("RAW", raw);
                 intent.putExtra("RESULT", raw);
                 intent.putExtra("TYPE", 0);
+            }
+        });
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent homeIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(homeIntent);
             }
         });
     }
