@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -7,4 +7,69 @@
     android:layout_height="match_parent"
     tools:context=".qrgendetail.QRGenEmailActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:text="EMAIL QR" />
+
+    <ImageButton
+        android:id="@+id/genEmailHomeBtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:contentDescription="@string/home_button"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <Button
+        android:id="@+id/qrEmailGenBtn"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginTop="540dp"
+        android:textSize="25sp"
+        android:text="@string/gen_qr" />
+
+    <EditText
+        android:id="@+id/qrMailto"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="200dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:textSize="25sp"
+        android:hint="@string/gen_mailto"/>
+
+    <EditText
+        android:id="@+id/qrSubject"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:ems="10"
+        android:layout_marginTop="300dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:inputType="text"
+        android:textSize="25sp"
+        android:hint="@string/gen_subject"/>
+
+    <EditText
+        android:id="@+id/qrBody"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:ems="10"
+        android:layout_marginTop="400dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:inputType="text"
+        android:textSize="25sp"
+        android:hint="@string/gen_body" />
+</RelativeLayout>

@@ -122,18 +122,18 @@ public class QRGenPhoneActivity extends AppCompatActivity {
                         getApplicationContext(), "Please enter valid phone number", Toast.LENGTH_LONG
                     ).show();
                 }
-                else if (code != null && country != null) {
-                    raw = "tel:" + code + String.valueOf(qrPhone.getText());
-                    result = code + String.valueOf(qrPhone.getText()) + "," + country;
+                else if (code == null || country == null) {
+                    Toast.makeText(
+                        getApplicationContext(), "Please choose valid code", Toast.LENGTH_LONG
+                    ).show();
+                }
+                else {
+                    raw = "tel:" + code + qrPhone.getText().toString();
+                    result = code + qrPhone.getText().toString() + "," + country;
                     Intent intent = new Intent(getApplicationContext(), QRDetailActivity.class);
                     intent.putExtra("RAW", raw);
                     intent.putExtra("RESULT", result);
                     intent.putExtra("TYPE", 1);
-                }
-                else {
-                    Toast.makeText(
-                        getApplicationContext(), "Please choose valid code", Toast.LENGTH_LONG
-                    ).show();
                 }
             }
         });

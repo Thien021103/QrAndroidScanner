@@ -100,8 +100,12 @@ public class QRDetailActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
+                String[] info = result.split(",");
                 content.setText(
-                    "___EMAIL___\n" + result
+                    "___EMAIL___\n"
+                    + "Recipient email: " + info[0]
+                    + "Email subject: " + info[1]
+                    + "Email body: " + info[2]
                 );
                 break;
             case 3: // Link
