@@ -5,8 +5,9 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -19,6 +20,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.QRScanner"
         tools:targetApi="31">
+        <activity
+            android:name=".qrgendetail.QRGenSMSActivity"
+            android:exported="false" />
+        <activity
+            android:name=".qrgendetail.QRGenLinkActivity"
+            android:exported="false" />
         <activity
             android:name=".qrgendetail.QRGenLocationActivity"
             android:exported="false" />
@@ -45,6 +52,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

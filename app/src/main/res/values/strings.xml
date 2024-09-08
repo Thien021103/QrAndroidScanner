@@ -17,6 +17,7 @@
     <string name="gen_mailto">Recipient email</string>
     <string name="gen_subject">Email subject</string>
     <string name="gen_body">Email body</string>
+    <string name="gen_link">Enter a link</string>
 
     <string name="interact_button">Interact</string>
     <string name="save_button">Save</string>

@@ -55,7 +55,7 @@ public class QRGenEmailActivity extends AppCompatActivity {
                     ).show();
                 }
                 else {
-                    raw = "maito:" + qrMailto.getText().toString()
+                    raw = "mailto:" + qrMailto.getText().toString()
                         + "?subject=" + qrSubject.getText().toString()
                         + "&body=" + qrBody.getText().toString();
                     result = qrMailto.getText().toString()
