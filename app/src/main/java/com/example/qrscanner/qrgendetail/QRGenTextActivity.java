@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,12 +36,19 @@ public class QRGenTextActivity extends AppCompatActivity {
         qrTextGenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                raw = qrText.getText().toString();
+                if(qrText.getText() == null) {
+                    Toast.makeText(
+                        getApplicationContext(), "Please enter something", Toast.LENGTH_LONG
+                    ).show();
+                }
+                else {
+                    raw = qrText.getText().toString();
 
-                Intent intent = new Intent(getApplicationContext(), QRDetailActivity.class);
-                intent.putExtra("RAW", raw);
-                intent.putExtra("RESULT", raw);
-                intent.putExtra("TYPE", 0);
+                    Intent intent = new Intent(getApplicationContext(), QRDetailActivity.class);
+                    intent.putExtra("RAW", raw);
+                    intent.putExtra("RESULT", raw);
+                    intent.putExtra("TYPE", 0);
+                }
             }
         });
         homeBtn.setOnClickListener(new View.OnClickListener() {

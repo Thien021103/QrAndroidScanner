@@ -16,8 +16,11 @@
     <string name="gen_phone">Enter phone number</string>
     <string name="gen_mailto">Recipient email</string>
     <string name="gen_subject">Email subject</string>
-    <string name="gen_body">Email body</string>
+    <string name="gen_body_email">Email body</string>
+    <string name="gen_body_sms">SMS body</string>
     <string name="gen_link">Enter a link</string>
+    <string name="gen_latitude">Latitude</string>
+    <string name="gen_longitude">Longitude</string>
 
     <string name="interact_button">Interact</string>
     <string name="save_button">Save</string>

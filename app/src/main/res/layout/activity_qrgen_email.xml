@@ -71,5 +71,5 @@
         android:layout_marginEnd="60dp"
         android:inputType="text"
         android:textSize="25sp"
-        android:hint="@string/gen_body" />
+        android:hint="@string/gen_body_email" />
 </RelativeLayout>

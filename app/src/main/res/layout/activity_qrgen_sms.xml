@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".qrgendetail.QRGenEmailActivity">
+    tools:context=".qrgendetail.QRGenSMSActivity">
 
     <TextView
         android:id="@+id/textView6"
@@ -38,11 +38,11 @@
         android:text="@string/gen_qr" />
 
     <EditText
-        android:id="@+id/qrSMS"
+        android:id="@+id/qrPhoneSMS"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:ems="10"
-        android:inputType="textEmailAddress"
+        android:inputType="phone"
         android:layout_marginTop="200dp"
         android:layout_marginStart="60dp"
         android:layout_marginEnd="60dp"
@@ -50,19 +50,7 @@
         android:hint="@string/gen_mailto"/>
 
     <EditText
-        android:id="@+id/qrSubject"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:ems="10"
-        android:layout_marginTop="300dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginEnd="60dp"
-        android:inputType="text"
-        android:textSize="25sp"
-        android:hint="@string/gen_subject"/>
-
-    <EditText
-        android:id="@+id/qrBody"
+        android:id="@+id/qrBodySMS"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:ems="10"
@@ -71,5 +59,5 @@
         android:layout_marginEnd="60dp"
         android:inputType="text"
         android:textSize="25sp"
-        android:hint="@string/gen_body" />
+        android:hint="@string/gen_body_sms" />
 </RelativeLayout>

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,12 +32,19 @@ public class QRGenLinkActivity extends AppCompatActivity {
         qrLinkGenBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                raw = qrLink.getText().toString();
+                if(qrLink.getText() == null) {
+                    Toast.makeText(
+                        getApplicationContext(), "Please enter valid link", Toast.LENGTH_LONG
+                    ).show();
+                }
+                else {
+                    raw = qrLink.getText().toString();
 
-                Intent intent = new Intent(getApplicationContext(), QRDetailActivity.class);
-                intent.putExtra("RAW", raw);
-                intent.putExtra("RESULT", raw);
-                intent.putExtra("TYPE", 3);
+                    Intent intent = new Intent(getApplicationContext(), QRDetailActivity.class);
+                    intent.putExtra("RAW", raw);
+                    intent.putExtra("RESULT", raw);
+                    intent.putExtra("TYPE", 3);
+                }
             }
         });
         homeBtn.setOnClickListener(new View.OnClickListener() {

@@ -24,7 +24,7 @@ import com.example.qrscanner.R;
 public class QRGenEmailActivity extends AppCompatActivity {
     private EditText qrBody, qrSubject, qrMailto;
     private Button homeBtn, genBtn;
-    private String raw, result;
+    private String raw, subject, body, email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,15 +55,18 @@ public class QRGenEmailActivity extends AppCompatActivity {
                     ).show();
                 }
                 else {
-                    raw = "mailto:" + qrMailto.getText().toString()
-                        + "?subject=" + qrSubject.getText().toString()
-                        + "&body=" + qrBody.getText().toString();
-                    result = qrMailto.getText().toString()
-                        + "," + qrSubject.getText().toString()
-                        + "," + qrBody.getText().toString();
+                    email = qrMailto.getText().toString();
+                    subject = qrSubject.getText().toString();
+                    body = qrBody.getText().toString();
+                    raw = "mailto:" + email
+                        + "?subject=" + subject
+                        + "&body=" + body;
                     Intent intent = new Intent(getApplicationContext(), QRDetailActivity.class);
                     intent.putExtra("RAW", raw);
-                    intent.putExtra("RESULT", result);
+                    intent.putExtra("RESULT", raw);
+                    intent.putExtra("EMAIL", email);
+                    intent.putExtra("SUBJECT", subject);
+                    intent.putExtra("BODY", body);
                     intent.putExtra("TYPE", 2);
                 }
             }

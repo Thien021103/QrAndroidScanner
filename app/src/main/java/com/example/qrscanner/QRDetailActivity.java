@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,7 +33,8 @@ import java.io.OutputStream;
 
 public class QRDetailActivity extends AppCompatActivity {
     private ImageView qrCode;
-    private Button saveQrBtn, shareQrBtn, interactBtn, homeBtn;
+    private Button saveQrBtn, shareQrBtn, interactBtn;
+    ImageButton homeBtn;
     private TextView content;
     private String raw, result;
     private int type;
@@ -100,12 +102,14 @@ public class QRDetailActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
-                String[] info = result.split(",");
+                String email = this.getIntent().getStringExtra("EMAIL");
+                String emailSubject = this.getIntent().getStringExtra("SUBJECT");
+                String emailBody = this.getIntent().getStringExtra("BODY");
                 content.setText(
                     "___EMAIL___\n"
-                    + "Recipient email: " + info[0]
-                    + "Email subject: " + info[1]
-                    + "Email body: " + info[2]
+                    + "Recipient email: " + email + "\n"
+                    + "Email subject: " + emailSubject + "\n"
+                    + "Email body: " + emailBody
                 );
                 break;
             case 3: // Link
@@ -121,13 +125,14 @@ public class QRDetailActivity extends AppCompatActivity {
                     }
                 });
                 content.setText(
-                        "___LINK___\n" + result
+                    "___LINK___\n" + result
                 );
                 break;
             case 4: // SMS
                 interactBtn.setVisibility(View.VISIBLE);
                 interactBtn.setClickable(true);
                 interactBtn.setText("Send SMS");
+
                 interactBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -136,8 +141,11 @@ public class QRDetailActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
+                String smsBody = this.getIntent().getStringExtra("BODY");
                 content.setText(
-                        "____SMS____\n" + result
+                    "____SMS____\n"
+                    + "Recipient phone number: " + result + "\n"
+                    + "SMS body: " + smsBody
                 );
                 break;
             case 5: // Location
@@ -152,8 +160,11 @@ public class QRDetailActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
+                String[] loca = result.split(",", 2);
                 content.setText(
-                        "__LOCATION__\n" + result
+                    "__LOCATION__\n"
+                    + "Latitude" + loca[0] + "\n"
+                    + "Longitude" + loca[1]
                 );
                 break;
         }
