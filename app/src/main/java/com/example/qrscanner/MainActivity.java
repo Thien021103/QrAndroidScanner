@@ -30,6 +30,7 @@ import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.integration.android.IntentIntegrator;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 
 public class MainActivity extends Activity {
 
@@ -104,36 +105,49 @@ public class MainActivity extends Activity {
                     Toast.makeText(this, "Could not rosolve QR", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                info = raw.split(":", 2);
-                switch (info[0]) {
-                    case "tel":
-                        result = info[1];
-                        type = 1;
-                        break;
-                    case "mailto":
-                        result = info[1];
-                        type = 2;
-                        break;
-                    case "https":
-                    case "http":
-                        result = info[1];
-                        type = 3;
-                        break;
-                    case "geo":
-                        result = info[1];
-                        type = 5;
-                        break;
-                    default:
-                        result = info[0];
-                        type = 0;
-                        break;
-                }
-                Intent intent = new Intent(MainActivity.this, QRDetailActivity.class);
-                intent.putExtra("RAW", raw);
-                intent.putExtra("TYPE", type);
-                intent.putExtra("RES", result);
+                else {
+                    info = raw.split(":", 2);
+                    Intent detailIntent = new Intent(MainActivity.this, QRDetailActivity.class);
+                    switch (info[0]) {
+                        case "tel":
+                            result = info[1];
+                            type = 1;
+                            break;
+                        case "mailto":
+                            result = info[1];
+                            String[] parts = info[1].split("\\?", 2);
+                            String email = parts[0];
+                            String[] pairs = parts[1].split("&", 2);
+                            // Decode each key-value pair
+                            String subject = URLDecoder.decode(pairs[0].substring(8), "UTF-8");
+                            String body = URLDecoder.decode(pairs[1].substring(5), "UTF-8");
+                            detailIntent.putExtra("EMAIL", email);
+                            detailIntent.putExtra("SUBJECT", subject);
+                            detailIntent.putExtra("BODY", body);
+                            detailIntent.putExtra("TYPE", 2);
+                            type = 2;
+                            break;
+                        case "https":
+                        case "http":
+                            result = info[1];
+                            type = 3;
+                            break;
+                        case "geo":
+                            result = info[1];
+                            type = 5;
+                            break;
+                        default:
+                            result = info[0];
+                            type = 0;
+                            break;
+                    }
 
-                startActivity(intent);
+                    detailIntent.putExtra("RAW", raw);
+                    detailIntent.putExtra("TYPE", type);
+                    detailIntent.putExtra("RESULT", result);
+
+                    startActivity(detailIntent);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
                 Toast.makeText(this, "Failed to resolve", Toast.LENGTH_SHORT).show();
