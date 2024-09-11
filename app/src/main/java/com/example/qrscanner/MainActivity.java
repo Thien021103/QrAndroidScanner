@@ -115,22 +115,28 @@ public class MainActivity extends Activity {
                             break;
                         case "mailto":
                             result = info[1];
-                            String[] parts = info[1].split("\\?", 2);
-                            String email = parts[0];
-                            String[] pairs = parts[1].split("&", 2);
+                            String[] mailParts = result.split("\\?", 2);
+                            String email = mailParts[0];
+                            String[] pairs = mailParts[1].split("&", 2);
                             // Decode each key-value pair
                             String subject = URLDecoder.decode(pairs[0].substring(8), "UTF-8");
-                            String body = URLDecoder.decode(pairs[1].substring(5), "UTF-8");
+                            String mailBody = URLDecoder.decode(pairs[1].substring(5), "UTF-8");
                             detailIntent.putExtra("EMAIL", email);
                             detailIntent.putExtra("SUBJECT", subject);
-                            detailIntent.putExtra("BODY", body);
-                            detailIntent.putExtra("TYPE", 2);
+                            detailIntent.putExtra("BODY", mailBody);
                             type = 2;
                             break;
                         case "https":
                         case "http":
                             result = info[1];
                             type = 3;
+                            break;
+                        case "sms":
+                            String[] smsParts = info[1].split("\\?", 2);
+                            result = smsParts[0];
+                            String smsBody = URLDecoder.decode(smsParts[1].substring(5), "UTF-8");
+                            detailIntent.putExtra("BODY", smsBody);
+                            type = 4;
                             break;
                         case "geo":
                             result = info[1];
@@ -141,7 +147,6 @@ public class MainActivity extends Activity {
                             type = 0;
                             break;
                     }
-
                     detailIntent.putExtra("RAW", raw);
                     detailIntent.putExtra("TYPE", type);
                     detailIntent.putExtra("RESULT", result);
