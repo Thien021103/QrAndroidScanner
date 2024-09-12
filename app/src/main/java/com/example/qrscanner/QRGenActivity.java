@@ -1,10 +1,12 @@
 package com.example.qrscanner;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -28,21 +30,29 @@ import com.google.zxing.common.HybridBinarizer;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class QRGenActivity extends AppCompatActivity {
-
+    private ImageButton homeBtn;
+    public static String[] myData = {"Text", "Phone", "Email", "SMS", "Link", "Location"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_qrgen);
 
-        String[] myData = {"Item 1", "Item 2", "Item 3", "Item 4"};
+        homeBtn = findViewById(R.id.genHomeBtn);
         // Find RecyclerView and set layout manager
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Create adapter and set it to the RecyclerView
-        QRTypeAdapter adapter = new QRTypeAdapter(myData);
+        QRTypeAdapter adapter = new QRTypeAdapter(myData, this);
         recyclerView.setAdapter(adapter);
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent homeIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(homeIntent);
+            }
+        });
     }
 
     public static Bitmap generateQRCode(String info) {
