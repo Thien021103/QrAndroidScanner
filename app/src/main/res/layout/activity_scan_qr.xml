@@ -10,7 +10,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="100dp"/>
+        android:layout_marginTop="100dp" />
 
     <ImageButton
         android:id="@+id/scanHomeBtn"
