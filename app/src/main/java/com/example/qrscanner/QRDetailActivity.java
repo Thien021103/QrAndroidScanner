@@ -33,9 +33,8 @@ import java.io.OutputStream;
 
 public class QRDetailActivity extends AppCompatActivity {
     private ImageView qrCode;
-    private Button saveQrBtn, shareQrBtn, interactBtn;
     ImageButton homeBtn;
-    private TextView content;
+    private TextView content, interactBtn, saveQrBtn, shareQrBtn;
     private String raw, result;
     private int type;
     private Bitmap bitmap;

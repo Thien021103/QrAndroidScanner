@@ -22,7 +22,7 @@ import com.example.qrscanner.R;
 public class QRGenTextActivity extends AppCompatActivity {
     private String raw;
     private EditText qrText;
-    private Button qrTextGenBtn;
+    private TextView qrTextGenBtn;
     private ImageButton homeBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

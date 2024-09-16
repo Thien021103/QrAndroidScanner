@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +24,8 @@ import com.example.qrscanner.R;
 
 public class QRGenEmailActivity extends AppCompatActivity {
     private EditText qrBody, qrSubject, qrMailto;
-    private Button homeBtn, genBtn;
+    private ImageButton homeBtn;
+    private TextView genBtn;
     private String raw, subject, body, email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

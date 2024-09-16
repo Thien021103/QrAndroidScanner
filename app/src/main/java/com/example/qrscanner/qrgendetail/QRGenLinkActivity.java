@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -18,7 +19,7 @@ import com.example.qrscanner.R;
 public class QRGenLinkActivity extends AppCompatActivity {
     private String raw;
     private EditText qrLink;
-    private Button qrLinkGenBtn;
+    private TextView qrLinkGenBtn;
     private ImageButton homeBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

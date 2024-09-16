@@ -37,7 +37,7 @@ public class MainActivity extends Activity {
     public static final int QR_SCAN_REQUEST = 0;
     public static final int IMG_CHOOSE_REQUEST = 1;
 
-    private Button chooseImgBtn, QRGenBtn, QRScanBtn;
+    private TextView chooseImgBtn, QRGenBtn, QRScanBtn;
     private String[] info;
     private String raw, result;
     private int type;

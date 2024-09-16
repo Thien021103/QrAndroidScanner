@@ -11,32 +11,36 @@
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="160dp"
         android:layout_marginStart="60dp"
         android:layout_marginEnd="60dp"
         android:textSize="30sp"
+        android:textStyle="bold"
         android:gravity="center"
         android:text="EMAIL QR" />
 
     <ImageButton
         android:id="@+id/genEmailHomeBtn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="40dp"
         android:background="@drawable/green_custom_text_box"
         android:contentDescription="@string/home_button"
         tools:srcCompat="@drawable/baseline_home_24" />
 
-    <Button
+    <TextView
         android:id="@+id/qrEmailGenBtn"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginStart="100dp"
+        android:layout_marginTop="670dp"
         android:layout_marginEnd="100dp"
-        android:layout_marginTop="540dp"
-        android:textSize="25sp"
-        android:text="@string/gen_qr" />
+        android:gravity="center"
+        android:background="@drawable/custom_text_box"
+        android:text="@string/gen_qr"
+        android:textColor="@color/dark_green"
+        android:textSize="25sp" />
 
     <EditText
         android:id="@+id/qrMailto"
@@ -44,26 +48,16 @@
         android:layout_height="80dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="300dp"
         android:layout_marginStart="60dp"
         android:layout_marginEnd="60dp"
         android:textSize="25sp"
+        android:padding="20dp"
+        android:background="@drawable/custom_text_box"
         android:hint="@string/gen_mailto"/>
 
     <EditText
         android:id="@+id/qrSubject"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:ems="10"
-        android:layout_marginTop="300dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginEnd="60dp"
-        android:inputType="text"
-        android:textSize="25sp"
-        android:hint="@string/gen_subject"/>
-
-    <EditText
-        android:id="@+id/qrBody"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:ems="10"
@@ -72,5 +66,21 @@
         android:layout_marginEnd="60dp"
         android:inputType="text"
         android:textSize="25sp"
+        android:padding="20dp"
+        android:background="@drawable/custom_text_box"
+        android:hint="@string/gen_subject"/>
+
+    <EditText
+        android:id="@+id/qrBody"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:ems="10"
+        android:layout_marginTop="500dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginEnd="60dp"
+        android:inputType="text"
+        android:textSize="25sp"
+        android:padding="20dp"
+        android:background="@drawable/custom_text_box"
         android:hint="@string/gen_body_email" />
 </RelativeLayout>

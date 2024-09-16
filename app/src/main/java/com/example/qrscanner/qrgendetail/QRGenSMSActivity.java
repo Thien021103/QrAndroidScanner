@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -19,7 +20,7 @@ import com.example.qrscanner.R;
 public class QRGenSMSActivity extends AppCompatActivity {
     private String raw;
     private EditText qrPhone, qrBody;
-    private Button qrSMSGenBtn;
+    private TextView qrSMSGenBtn;
     private ImageButton homeBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

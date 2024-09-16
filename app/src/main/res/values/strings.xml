@@ -2,7 +2,7 @@
     <string name="app_name">QR Scanner</string>
     <string name="app_intro">QR SCANNER</string>
 
-    <string name="scan_qr_text">Scan the QR Code</string>
+    <string name="scan_qr_text">SCAN QR CODE</string>
 
     <string name="scan_qr">Scan QR</string>
     <string name="gen_custom_qr">Generate custom QR</string>

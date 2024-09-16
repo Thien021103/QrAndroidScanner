@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -27,7 +28,7 @@ public class QRGenPhoneActivity extends AppCompatActivity {
     private EditText qrPhone;
     private Spinner areaSpinner;
     private ImageButton homeBtn;
-    private Button genBtn;
+    private TextView genBtn;
     public static String[] countryCode = {
           "(+7840) Abkhazia", "(+93) Afghanistan", "(+355) Albania", "(+213) Algeria", "(+1684) American Samoa"
         , "(+376) Andorra", "(+244) Angola", "(+1264) Anguilla", "(+1268) Antigua and Barbuda", "(+54) Argentina"
@@ -94,9 +95,9 @@ public class QRGenPhoneActivity extends AppCompatActivity {
                 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, countryCode);
 
         areaSpinner.setAdapter(adapter);
-        areaSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        areaSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 String selected = adapterView.getItemAtPosition(position).toString();
                 String[] res = extractCodeAndCountry(selected);
 
@@ -111,6 +112,10 @@ public class QRGenPhoneActivity extends AppCompatActivity {
                     code = null;
                     country = null;
                 }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
 

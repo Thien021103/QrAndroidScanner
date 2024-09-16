@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".QRDetailActivity">
@@ -12,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="280dp"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="120dp"
         android:layout_marginEnd="55dp"
         android:contentDescription="@string/your_qr_code" />
 
@@ -22,7 +23,7 @@
         android:layout_height="25dp"
         android:layout_marginStart="55dp"
         android:layout_marginEnd="55dp"
-        android:layout_marginTop="380dp"
+        android:layout_marginTop="400dp"
         android:textSize="20sp"
         android:textStyle="italic"
         android:text="@string/your_qr_code"
@@ -34,47 +35,60 @@
         android:layout_width="match_parent"
         android:gravity="center"
         android:hint="@string/your_qr_content"
-        android:layout_marginTop="410dp"
+        android:layout_marginTop="470dp"
         android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"/>
+        android:layout_marginEnd="50dp"
+        android:padding="20dp"
+        android:background="@drawable/custom_text_box"/>
 
     <ImageButton
         android:id="@+id/detailHomeBtn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="40dp"
         android:background="@drawable/green_custom_text_box"
         android:contentDescription="@string/home_button"
-        tools:srcCompat="@drawable/baseline_home_24" />
+        android:src="@drawable/baseline_home_24" />
 
-    <Button
+    <TextView
         android:id="@+id/interactBtn"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="550dp"
+        android:layout_height="180dp"
         android:layout_marginStart="55dp"
-        android:layout_marginEnd="220dp"
-        android:textSize="25sp"
-        android:text="@string/interact_button" />
+        android:layout_marginTop="650dp"
+        android:layout_marginEnd="-210dp"
+        android:layout_toStartOf="@+id/shareBtn"
+        android:background="@drawable/custom_text_box"
+        android:backgroundTint="@null"
+        android:gravity="center"
+        android:text="@string/interact_button"
+        android:textColor="@color/dark_green"
+        android:textSize="25sp" />
 
-    <Button
+    <TextView
         android:id="@+id/saveBtn"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginTop="540dp"
-        android:layout_marginStart="210dp"
+        android:layout_marginStart="230dp"
+        android:layout_marginTop="650dp"
         android:layout_marginEnd="55dp"
-        android:textSize="25sp"
-        android:text="@string/save_button" />
+        android:background="@drawable/custom_text_box"
+        android:gravity="center"
+        android:text="@string/save_button"
+        android:textColor="@color/dark_green"
+        android:textSize="25sp" />
 
-    <Button
+    <TextView
         android:id="@+id/shareBtn"
-        android:layout_width="match_parent"
+        android:layout_width="156dp"
         android:layout_height="80dp"
-        android:layout_marginTop="620dp"
-        android:layout_marginStart="210dp"
+        android:layout_marginStart="230dp"
+        android:layout_marginTop="750dp"
         android:layout_marginEnd="55dp"
-        android:textSize="25sp"
-        android:text="@string/share_button" />
+        android:background="@drawable/custom_text_box"
+        android:gravity="center"
+        android:text="@string/share_button"
+        android:textColor="@color/dark_green"
+        android:textSize="25sp" />
 </RelativeLayout>

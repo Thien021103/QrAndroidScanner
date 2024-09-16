@@ -8,17 +8,17 @@
     tools:context=".QRGenActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="185dp"
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
     <ImageButton
         android:id="@+id/genHomeBtn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="40dp"
         android:background="@drawable/green_custom_text_box"
         android:contentDescription="@string/home_button"
         tools:srcCompat="@drawable/baseline_home_24" />
@@ -31,5 +31,5 @@
         android:textStyle="bold"
         android:textSize="30sp"
         android:gravity="center"
-        android:layout_marginTop="80dp"/>
+        android:layout_marginTop="120dp"/>
 </RelativeLayout>

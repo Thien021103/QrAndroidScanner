@@ -9,10 +9,10 @@
 
     <ImageButton
         android:id="@+id/genPhoneHomeBtn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="40dp"
         android:background="@drawable/green_custom_text_box"
         android:contentDescription="@string/home_button"
         tools:srcCompat="@drawable/baseline_home_24" />
@@ -21,30 +21,40 @@
         android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="400dp"
         android:layout_marginStart="60dp"
+        android:padding="20dp"
+        android:spinnerMode="dropdown"
+        android:background="@drawable/custom_text_box"
         android:layout_marginEnd="60dp" />
 
     <EditText
         android:id="@+id/qrPhone"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="510dp"
         android:layout_marginStart="60dp"
         android:layout_marginEnd="60dp"
         android:hint="@string/gen_phone"
         android:inputType="phone"
+        android:padding="20dp"
+        android:background="@drawable/custom_text_box"
         android:textSize="25sp" />
 
-    <Button
+    <TextView
         android:id="@+id/qrPhoneGenBtn"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:textSize="25sp"
         android:layout_marginStart="60dp"
         android:layout_marginEnd="60dp"
-        android:layout_marginTop="550dp"
-        android:text="@string/gen_qr" />
+        android:layout_marginTop="660dp"
+        android:gravity="center"
+        android:clickable="true"
+        android:textStyle="bold"
+        android:text="@string/gen_qr"
+        android:background="@drawable/custom_text_box"
+        android:textColor="@color/dark_green"/>
 
     <TextView
         android:id="@+id/textView4"
@@ -53,7 +63,7 @@
         android:textSize="30sp"
         android:layout_marginStart="60dp"
         android:layout_marginEnd="60dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="160dp"
         android:gravity="center"
         android:textStyle="bold"
         android:text="PHONE NUMBER QR" />

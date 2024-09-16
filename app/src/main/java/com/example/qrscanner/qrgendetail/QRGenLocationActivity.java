@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -23,7 +24,7 @@ import com.example.qrscanner.R;
 public class QRGenLocationActivity extends AppCompatActivity {
 
     private EditText qrLatitude, qrLongitude;
-    private Button qrLocationGenBtn;
+    private TextView qrLocationGenBtn;
     private ImageButton homeBtn;
     private String raw, result;
 
