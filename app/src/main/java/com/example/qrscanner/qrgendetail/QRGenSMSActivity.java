@@ -55,6 +55,7 @@ public class QRGenSMSActivity extends AppCompatActivity {
                     intent.putExtra("RESULT", phoneNumber);
                     intent.putExtra("BODY", body);
                     intent.putExtra("TYPE", 4);
+                    startActivity(intent);
                 }
             }
         });

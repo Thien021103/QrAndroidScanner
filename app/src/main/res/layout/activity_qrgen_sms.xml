@@ -23,11 +23,11 @@
         android:id="@+id/genSMSHomeBtn"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
         android:layout_marginStart="40dp"
         android:background="@drawable/green_custom_text_box"
         android:contentDescription="@string/home_button"
-        tools:srcCompat="@drawable/baseline_home_24" />
+        android:src="@drawable/baseline_home_24" />
 
     <TextView
         android:id="@+id/qrSMSGenBtn"
@@ -55,7 +55,7 @@
         android:textSize="25sp"
         android:padding="20dp"
         android:background="@drawable/custom_text_box"
-        android:hint="@string/gen_mailto"/>
+        android:hint="@string/gen_phone"/>
 
     <EditText
         android:id="@+id/qrBodySMS"

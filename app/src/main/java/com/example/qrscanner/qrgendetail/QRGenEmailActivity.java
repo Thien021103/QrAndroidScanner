@@ -70,6 +70,7 @@ public class QRGenEmailActivity extends AppCompatActivity {
                     intent.putExtra("SUBJECT", subject);
                     intent.putExtra("BODY", body);
                     intent.putExtra("TYPE", 2);
+                    startActivity(intent);
                 }
             }
         });

@@ -48,6 +48,7 @@ public class QRGenTextActivity extends AppCompatActivity {
                     intent.putExtra("RAW", raw);
                     intent.putExtra("RESULT", raw);
                     intent.putExtra("TYPE", 0);
+                    startActivity(intent);
                 }
             }
         });

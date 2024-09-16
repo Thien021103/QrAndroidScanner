@@ -45,6 +45,7 @@ public class QRGenLinkActivity extends AppCompatActivity {
                     intent.putExtra("RAW", raw);
                     intent.putExtra("RESULT", raw);
                     intent.putExtra("TYPE", 3);
+                    startActivity(intent);
                 }
             }
         });

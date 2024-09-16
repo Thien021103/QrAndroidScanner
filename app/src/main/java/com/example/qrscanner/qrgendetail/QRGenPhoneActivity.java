@@ -134,11 +134,13 @@ public class QRGenPhoneActivity extends AppCompatActivity {
                 }
                 else {
                     raw = "tel:" + code + qrPhone.getText().toString();
-                    result = code + qrPhone.getText().toString() + "," + country;
+                    result = code + qrPhone.getText().toString();
                     Intent intent = new Intent(getApplicationContext(), QRDetailActivity.class);
                     intent.putExtra("RAW", raw);
                     intent.putExtra("RESULT", result);
+                    intent.putExtra("CODE", country);
                     intent.putExtra("TYPE", 1);
+                    startActivity(intent);
                 }
             }
         });

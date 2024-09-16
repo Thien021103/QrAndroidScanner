@@ -60,6 +60,7 @@ public class QRGenLocationActivity extends AppCompatActivity {
                     intent.putExtra("RAW", raw);
                     intent.putExtra("RESULT", latitude + "," + longitude);
                     intent.putExtra("TYPE", 5);
+                    startActivity(intent);
                 }
             }
         });

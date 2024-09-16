@@ -2,6 +2,7 @@ package com.example.qrscanner;
 
 import android.Manifest;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -85,8 +87,11 @@ public class QRDetailActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
+                String country = this.getIntent().getStringExtra("CODE");
                 content.setText(
-                    "___PHONE___\n" + result
+                    "___PHONE___\n"
+                    + "Phone number: " + result + "\n"
+                    + "Country: " + country
                 );
                 break;
             case 2: // Email
@@ -167,12 +172,6 @@ public class QRDetailActivity extends AppCompatActivity {
                 );
                 break;
         }
-        saveQrBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                requestPermissionsToSave();
-            }
-        });
         shareQrBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -186,31 +185,38 @@ public class QRDetailActivity extends AppCompatActivity {
                 startActivity(homeIntent);
             }
         });
+        saveQrBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    saveQrCodeToGallery();
+                }
+                else {
+                    requestPermissionsToSave();
+                }
+            }
+        });
     }
     private void saveQrCodeToGallery() {
 
-        OutputStream fos;
+        OutputStream outputStream;
+        ContentResolver resolver = getContentResolver();
 
         try {
             ContentValues values = new ContentValues();
+            values.put(MediaStore.Images.Media.TITLE, "qr_code");
             values.put(MediaStore.Images.Media.DISPLAY_NAME, "QRCode_" + System.currentTimeMillis() + ".png");
             values.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
+            values.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + "/QR Codes");
 
-            Uri uri;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                values.put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/QRCode");
-                uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-            } else {
-                uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-            }
+            Uri uri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 
-            fos = getContentResolver().openOutputStream(uri);
-            if (fos != null) {
-                bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
-                fos.close();
+            if (uri != null) {
+                outputStream = getContentResolver().openOutputStream(uri);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+                outputStream.close();
                 Toast.makeText(this, "QR code saved to Gallery!", Toast.LENGTH_SHORT).show();
             }
-
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, "Failed to save QR code", Toast.LENGTH_SHORT).show();
@@ -233,7 +239,7 @@ public class QRDetailActivity extends AppCompatActivity {
             shareIntent.setType("image/png");
 
             // Start the activity to share the image
-            context.startActivity(Intent.createChooser(shareIntent, "Share Image"));
+            startActivity(Intent.createChooser(shareIntent, "Share Image"));
         }
     }
     public File saveBitmapToFile(Context context, Bitmap bitmap, String fileName) {
@@ -253,8 +259,8 @@ public class QRDetailActivity extends AppCompatActivity {
     private void requestPermissionsToSave() {
         // List of permissions to request
         String[] permissions = {
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
         };
 
         // Check if permissions are already granted
