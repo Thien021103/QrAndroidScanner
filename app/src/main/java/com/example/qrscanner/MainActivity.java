@@ -1,9 +1,12 @@
 package com.example.qrscanner;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.util.Linkify;
@@ -14,7 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -36,7 +42,8 @@ public class MainActivity extends Activity {
 
     public static final int QR_SCAN_REQUEST = 0;
     public static final int IMG_CHOOSE_REQUEST = 1;
-
+    public static final int CAMERA_PERMISSION_CODE = 111;
+    public static final int EXTERNAL_STORAGE_PERMISSION_CODE = 100;
     private TextView chooseImgBtn, QRGenBtn, QRScanBtn;
     private String[] info;
     private String raw, result;
@@ -54,17 +61,24 @@ public class MainActivity extends Activity {
         chooseImgBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                openImageChooser();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    openImageChooser();
+                }
+                else {
+                    requestPermissionsToChooseImg();
+                }
             }
         });
-
-        QRScanBtn.setOnClickListener(new View.OnClickListener(){
+        QRScanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openQRScanner();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { // For Android 6 (API 23) and above
+                    requestPermissionsToScan(); // Request permissions explicitly for the camera
+                } else {
+                    openQRScanner(); // Open directly for Android versions below API 23
+                }
             }
         });
-
         QRGenBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -128,7 +142,7 @@ public class MainActivity extends Activity {
                             break;
                         case "https":
                         case "http":
-                            result = info[1];
+                             result = info[1];
                             type = 3;
                             break;
                         case "sms":
@@ -160,6 +174,71 @@ public class MainActivity extends Activity {
         }
         else {
             Toast.makeText(this, "Failed to load image", Toast.LENGTH_SHORT).show();
+        }
+    }
+    private void requestPermissionsToChooseImg() {
+        // List of permissions to request
+        String[] permissions = {
+            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            android.Manifest.permission.READ_EXTERNAL_STORAGE,
+        };
+
+        // Check if permissions are already granted
+        if (
+            ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+            || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // Request permissions
+            ActivityCompat.requestPermissions(this, permissions, EXTERNAL_STORAGE_PERMISSION_CODE);
+        } else {
+            // Permissions are already granted, proceed
+            openImageChooser();
+        }
+    }
+    private void requestPermissionsToScan() {
+        // List of permissions to request
+        String[] permissions = { android.Manifest.permission.CAMERA };
+
+        // Check if permissions are already granted
+        if (
+            ContextCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED
+        ) {
+            // Request permissions
+            ActivityCompat.requestPermissions(this, permissions, CAMERA_PERMISSION_CODE);
+        } else {
+            // Permissions are already granted, proceed
+            openQRScanner();
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+    {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == EXTERNAL_STORAGE_PERMISSION_CODE) {
+            boolean allPermissionsGranted = true;
+            for (int result : grantResults) {
+                if (result != PackageManager.PERMISSION_GRANTED) {
+                    allPermissionsGranted = false;
+                    break;
+                }
+            }
+            if (allPermissionsGranted) {
+                Toast.makeText(this, "Permissions granted", Toast.LENGTH_SHORT).show();
+                openImageChooser();
+            } else {
+                // Some permissions were denied, show a message to the user
+                Toast.makeText(this, "All permissions are required to proceed.", Toast.LENGTH_SHORT).show();
+            }
+        } else if (requestCode == CAMERA_PERMISSION_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission was granted, open the QR scanner
+                openQRScanner();
+            } else {
+                // Permission was denied, inform the user
+                Toast.makeText(this, "Camera permission is required to scan QR codes.", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
