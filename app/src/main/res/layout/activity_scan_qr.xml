@@ -7,10 +7,10 @@
 
     <com.journeyapps.barcodescanner.DecoratedBarcodeView
         android:id="@+id/zxing_barcode_scanner"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="350dp" />
+        android:layout_centerVertical="true"/>
 
     <ImageButton
         android:id="@+id/scanHomeBtn"

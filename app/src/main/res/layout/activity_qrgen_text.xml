@@ -12,15 +12,15 @@
         android:id="@+id/qrText"
         android:layout_width="match_parent"
         android:layout_height="270dp"
-        android:gravity="center"
         android:layout_marginStart="60dp"
+        android:layout_marginTop="300dp"
         android:layout_marginEnd="60dp"
-        android:layout_marginTop="360dp"
-        android:inputType="text"
-        android:textSize="25sp"
-        android:padding="20dp"
         android:background="@drawable/custom_text_box"
-        android:hint="@string/gen_text" />
+        android:gravity="center"
+        android:hint="@string/gen_text"
+        android:inputType="textMultiLine"
+        android:padding="20dp"
+        android:textSize="25sp" />
 
     <ImageButton
         android:id="@+id/genTextHomeBtn"
@@ -38,7 +38,8 @@
         android:layout_height="80dp"
         android:layout_marginStart="100dp"
         android:layout_marginEnd="100dp"
-        android:layout_marginTop="660dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="120dp"
         android:textSize="25sp"
         android:gravity="center"
         android:textStyle="bold"
